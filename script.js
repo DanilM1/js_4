@@ -121,7 +121,7 @@ button_start_.addEventListener('click',
 
     true_.addEventListener('click', 
     (event) => {
-        question_.innerHTML = answer[Math.round(Math.random() * 5)] + ' ' + buf[0];
+        question_.innerHTML = answer[Math.round(Math.random() * 5)] + ' ' + Math.floor(buf[0]);
         questionN_.innerHTML = 'Спасибо за игру!';
         button_.style.display = 'none';
     });
