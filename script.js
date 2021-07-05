@@ -1,10 +1,10 @@
 // Алгоритм работы игры "Угадайка". Учебная версия. Модуль 11. Год 2021.
 
-import {limitContent, question, answer, lessMore, true__, end} from './content.js';
+import {limitContent, question, answer, lessMore, true__, end, numbers} from './content.js';
 
 let
 
-buf = [0, '', '', 0, 0],
+buf = [0, '', '', 0, 0, 0],
 
 bottom_ = document.querySelector('#bottom'),
 top_ = document.querySelector('#top'),
@@ -81,43 +81,47 @@ button_start_.addEventListener('click',
     less_.innerHTML = lessMore[0][buf[0]];
     more_.innerHTML = lessMore[1][buf[0]];
 
-    buf[0] = Math.round(Math.random() * 5);
-    true_.innerHTML = true__[buf[0]];
+    true_.innerHTML = true__[Math.round(Math.random() * 5)];
 
-    buf[0] = Math.round(Math.random() * 2);
-    end_.innerHTML = end[buf[0]];
+    end_.innerHTML = end[Math.round(Math.random() * 2)];
 
     buf[3] = 1;
 
-    buf[4] = Math.round(Math.random() * 2);
-    question_.innerHTML = question[buf[4]] + ' ' + buf[3];
+    question_.innerHTML = question[Math.round(Math.random() * 2)] + ' ' + buf[3];
 
-    buf[0] = Math.floor((+buf[1] + +buf[2]) / 2);
-    buf[5] = buf[0] / 2;
-    questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0]) + '?';
+    buf[0] = Math.floor((+buf[1] + +buf[2]) + 999);
+    buf[4] = Math.abs(buf[0] / 2);
+    questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0] - 999) + '?';
 
     less_.addEventListener('click', 
     (event) => {
         buf[3]++;
-        question_.innerHTML = question[buf[4]] + ' ' + buf[3];
-        buf[0] -= buf[5];
-        buf[5] /= 2;
-        buf[5] = Math.max(buf[5], 1);
-        questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0]) + '?';
+        question_.innerHTML = question[Math.round(Math.random() * 2)] + ' ' + buf[3];
+        buf[0] -= buf[4];
+        if (buf[5] === 2) {
+            buf[4] /= 2;
+        }
+        buf[5] = 1;
+        buf[4] = Math.max(buf[4], 1);
+        questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0] - 999) + '?';
     });
 
-    more_.addEventListener('click', 
+    more_.addEventListener('click',
     (event) => {
         buf[3]++;
-        question_.innerHTML = question[buf[4]] + ' ' + buf[3];
-        buf[0] += buf[5];
-        buf[5] /= 2;
-        buf[5] = Math.max(buf[5], 1);
-        questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0]) + '?';
+        question_.innerHTML = question[Math.round(Math.random() * 2)] + ' ' + buf[3];
+        buf[0] += buf[4];
+        if (buf[5] === 1) {
+            buf[4] /= 2;
+        }
+        buf[5] = 2;
+        buf[4] = Math.max(buf[4], 1);
+        questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0] - 999) + '?';
     });
 
     true_.addEventListener('click', 
     (event) => {
+        question_.innerHTML = answer[Math.round(Math.random() * 5)] + ' ' + buf[0];
         questionN_.innerHTML = 'Спасибо за игру!';
         button_.style.display = 'none';
     });

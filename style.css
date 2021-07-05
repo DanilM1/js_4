@@ -7,10 +7,10 @@ p {
 }
 
 #game {
-    border: 1px solid lightslategrey;
+    border: 1px solid lightsteelblue;
     border-radius: 10px;
 }
 
 #question {
-    background-color: lightslategrey;
+    background-color:lightsteelblue;
 }
