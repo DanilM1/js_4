@@ -1,0 +1,16 @@
+#top, #top_, p, #button_start, #game {
+    display: none;
+}
+
+p {
+    color: red;
+}
+
+#game {
+    border: 1px solid lightslategrey;
+    border-radius: 10px;
+}
+
+#question {
+    background-color: lightslategrey;
+}
