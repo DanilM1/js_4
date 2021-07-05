@@ -89,9 +89,9 @@ button_start_.addEventListener('click',
 
     question_.innerHTML = question[Math.round(Math.random() * 2)] + ' ' + buf[3];
 
-    buf[0] = Math.floor((+buf[1] + +buf[2]) + 999);
-    buf[4] = Math.abs(buf[0] / 2);
-    questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0] - 999) + '?';
+    buf[0] = Math.floor((+buf[1] + +buf[2]) / 2);
+    buf[4] = 500;
+    questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0]) + '?';
 
     less_.addEventListener('click', 
     (event) => {
@@ -103,7 +103,7 @@ button_start_.addEventListener('click',
         }
         buf[5] = 1;
         buf[4] = Math.max(buf[4], 1);
-        questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0] - 999) + '?';
+        questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0]) + '?';
     });
 
     more_.addEventListener('click',
@@ -116,7 +116,7 @@ button_start_.addEventListener('click',
         }
         buf[5] = 2;
         buf[4] = Math.max(buf[4], 1);
-        questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0] - 999) + '?';
+        questionN_.innerHTML = 'Загаданное число больше или меньше ' + Math.floor(buf[0]) + '?';
     });
 
     true_.addEventListener('click', 
